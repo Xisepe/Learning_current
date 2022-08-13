@@ -11,7 +11,6 @@ import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -23,22 +22,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import io.ktor.client.*
-import io.ktor.client.request.*
-import io.ktor.http.*
-import kotlinx.coroutines.launch
 import ru.golubev.learning_current.R
-import ru.golubev.learning_current.dto.SignUpDTO
 import ru.golubev.learning_current.ui.theme.AppTheme
-import ru.golubev.learning_current.util.PasswordValidator
-import ru.golubev.learning_current.util.ValidationResult
-import ru.golubev.learning_current.util.ValidationResultSaver
 
 @ExperimentalComposeUiApi
 @Composable
+
 fun SignupUI(
 /*client: HttpClient*/
 navController: NavController
