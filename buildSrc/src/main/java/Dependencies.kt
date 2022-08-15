@@ -2,6 +2,16 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 
 object Dependencies {
 
+    private const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
+
+    //ktor
+    private const val ktorCore = "io.ktor:ktor-client-core:${Versions.ktor}"
+    private const val ktorAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
+    private const val ktorLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
+    private const val ktorResource = "io.ktor:ktor-client-resources:${Versions.ktor}"
+    private const val ktorNegotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
+    private const val ktorJson = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
+
     //android ui
     private const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     private const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntime}"
@@ -9,10 +19,10 @@ object Dependencies {
     private const val composeMaterial = "androidx.compose.material:material:${Versions.compose}"
     private const val composeMaterialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.compose}"
     private const val composePreview = "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
-    private const val composeActivity = "androidx.activity:activity-compose:${Versions.compose}"
+    private const val composeActivity = "androidx.activity:activity-compose:${Versions.composeActivity}"
 
     //navigation
-    private const val navigation = "androidx.navigation:navigation-compose:${Versions.compose}"
+    private const val navigation = "androidx.navigation:navigation-compose:${Versions.nav}"
 
     //serialization
     private const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.serialization}"
@@ -28,6 +38,7 @@ object Dependencies {
     private const val composeJunit = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
 
     val appLibs = listOf(
+        kotlinStdLib,
         coreKtx,
         lifecycle,
         composeUI,
@@ -37,7 +48,13 @@ object Dependencies {
         composeActivity,
         navigation,
         serialization,
-        hilt
+        hilt,
+        ktorCore,
+        ktorAndroid,
+        ktorLogging,
+        ktorResource,
+        ktorNegotiation,
+        ktorJson
     )
 
     val kaptLibs = listOf(hiltCompiler)

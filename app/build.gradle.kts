@@ -5,6 +5,9 @@ plugins {
     kotlin("plugin.serialization")
     id("dagger.hilt.android.plugin")
 }
+apply {
+    plugin("kotlin-android")
+}
 
 android {
     compileSdk = Config.compileSdk
@@ -49,34 +52,16 @@ android {
 }
 
 dependencies {
-
-//    implementation("androidx.core:core-ktx:1.8.0")
-//
-//    implementation("androidx.compose.ui:ui:${Versions.compose}")
-//    implementation("androidx.compose.material:material:${Versions.compose}")
-//    implementation("androidx.compose.material:material-icons-extended:${Versions.compose}")
-    //implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose}")
-
-    //implementation("com.android.tools.build:gradle:7.2.0")
-
-    //implementation("androidx.navigation:navigation-compose:${Versions.compose}")
-
-    //implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-    //implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntime}")
-    //implementation("androidx.activity:activity-compose:${Versions.compose}")
-
-    //implementation("com.google.dagger:hilt-android:${Versions.hilt}")
-    //kapt("com.google.dagger:hilt-compiler:${Versions.hilt}")
-
-    //testImplementation("junit:junit:4.13.2")
-
-    //androidTestImplementation("androidx.test.ext:junit:${Versions.extJunit}}")
-    //androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espressoCore}")
-    //androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
-
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(Dependencies.appLibs)
     kapt(Dependencies.kaptLibs)
     testImplementation(Dependencies.testLibs)
     androidTestImplementation(Dependencies.androidTestLibs)
 
+
+}
+repositories {
+    mavenCentral()
+    google()
+    maven { url = uri("https://jitpack.io") }
 }

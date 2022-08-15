@@ -1,6 +1,6 @@
 object Versions {
     //app level
-    const val gradle= "7.2.0"
+    const val gradle= "7.2.2"
     const val kotlin = "1.7.10"
 
     const val lifecycleRuntime = "2.5.1"
@@ -9,7 +9,8 @@ object Versions {
     const val coreKtx = "1.8.0"
 
     //jetpack compose
-    const val compose = "1.5.1"
+    const val composeActivity = "1.5.1"
+    const val compose = "1.2.1"
 
     //ktor
     const val ktor= "2.0.3"

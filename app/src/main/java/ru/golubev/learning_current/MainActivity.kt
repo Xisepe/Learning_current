@@ -10,9 +10,8 @@ import androidx.navigation.compose.rememberNavController
 import ru.golubev.learning_current.views.login.LoginUI
 import ru.golubev.learning_current.views.login.SignupUI
 
-
-
 @OptIn(ExperimentalComposeUiApi::class)
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
