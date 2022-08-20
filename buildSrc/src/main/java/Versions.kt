@@ -3,7 +3,7 @@ object Versions {
     const val gradle= "7.2.2"
     const val kotlin = "1.7.10"
 
-    const val lifecycleRuntime = "2.5.1"
+    const val lifecycle = "2.5.1"
 
     //coreKtx
     const val coreKtx = "1.8.0"

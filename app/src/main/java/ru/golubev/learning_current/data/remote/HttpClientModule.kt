@@ -10,6 +10,7 @@ import io.ktor.client.engine.android.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
+import io.ktor.client.plugins.observer.*
 import io.ktor.client.plugins.resources.*
 import io.ktor.client.request.*
 import io.ktor.http.*
@@ -25,12 +26,13 @@ object HttpClientModule {
     @Provides
     fun provideHttpClient(): HttpClient = HttpClient(Android) {
         followRedirects = false
+        expectSuccess = true
         //Request
         install(DefaultRequest) {
-            url("https://mock-banking-application.herokuapp.com/")
+            url(HttpClientConfig.BASE_URL)
             header(HttpHeaders.ContentType, ContentType.Application.Json)
         }
-        //Type sage
+        //Type safe
         install(Resources)
         //Logs
         install(Logging) {
@@ -43,7 +45,7 @@ object HttpClientModule {
         }
         //Retries
         install(HttpRequestRetry) {
-            retryOnServerErrors(maxRetries = 5)
+            retryOnServerErrors(maxRetries = HttpClientConfig.MAX_HTTP_REQUEST_RETRIES)
             exponentialDelay()
         }
         //Content(JSON)
@@ -53,10 +55,16 @@ object HttpClientModule {
                 isLenient = true
             })
         }
+        //log responses
+        install(ResponseObserver) {
+            onResponse { response ->
+                Log.d("HTTP status:", "${response.status.value}")
+            }
+        }
+
         engine {
-            val timeOut = 60_000
-            connectTimeout = timeOut
-            socketTimeout = timeOut
+            connectTimeout = HttpClientConfig.TIME_OUT
+            socketTimeout = HttpClientConfig.TIME_OUT
         }
     }
 

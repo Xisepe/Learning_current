@@ -1,4 +1,4 @@
-package ru.golubev.learning_current.views.login
+package ru.golubev.learning_current.views.entry
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -10,7 +10,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -31,25 +32,17 @@ import ru.golubev.learning_current.ui.theme.AppTheme
 @Composable
 
 fun SignupUI(
-/*client: HttpClient*/
-navController: NavController
+    navController: NavController,
+    username: String,
+    onUsernameChange: (String) -> Unit,
+    clearUsername: () -> Unit,
+    password: String,
+    onPasswordChange: (String) -> Unit,
+    isPasswordVisible: Boolean,
+    changeVisibility: () -> Unit
 ) {
-
-    var username by remember {
-        mutableStateOf("")
-    }
-
-    var password by remember {
-        mutableStateOf("")
-    }
-
-    var isPasswordVisible by remember {
-        mutableStateOf(false)
-    }
-
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
-
     val signUpScope = rememberCoroutineScope()
 
     AppTheme(darkTheme = true) {
@@ -86,13 +79,11 @@ navController: NavController
                     ) {
                         OutlinedTextField(
                             value = username,
-                            onValueChange = {
-                                username = it
-                            },
+                            onValueChange = onUsernameChange,
                             label = { Text(text = "Username") },
                             trailingIcon = {
                                 if (username.isNotEmpty()) {
-                                    IconButton(onClick = { username = "" }) {
+                                    IconButton(onClick = clearUsername) {
                                         Icon(
                                             imageVector = Icons.Filled.Clear,
                                             contentDescription = "Clear button icon"
@@ -112,15 +103,11 @@ navController: NavController
                         Spacer(modifier = Modifier.height(8.dp))
                         OutlinedTextField(
                             value = password,
-                            onValueChange = {
-                                password = it
-                            },
+                            onValueChange = onPasswordChange,
                             label = { Text(text = "Password") },
                             trailingIcon = {
                                 if (password.isNotEmpty()) {
-                                    IconButton(onClick = {
-                                        isPasswordVisible = !isPasswordVisible
-                                    }) {
+                                    IconButton(onClick = changeVisibility) {
                                         Icon(
                                             imageVector = if (isPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                                             contentDescription = "Visibility button icon"
@@ -143,12 +130,6 @@ navController: NavController
                         Spacer(modifier = Modifier.height(8.dp))
                         Button(
                             onClick = {
-//                                val response = signUpScope.launch {
-//                                    client.post("https://mock-banking-application.herokuapp.com/signup") {
-//                                        contentType(ContentType.Application.Json)
-//                                        setBody(SignUpDTO(username, password))
-//                                    }
-//                                }
 
                             },
                             modifier = Modifier.fillMaxWidth(),

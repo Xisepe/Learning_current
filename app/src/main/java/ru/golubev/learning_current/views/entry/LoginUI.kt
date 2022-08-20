@@ -1,4 +1,4 @@
-package ru.golubev.learning_current.views.login
+package ru.golubev.learning_current.views.entry
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -142,12 +142,6 @@ fun LoginUI(
                         Spacer(modifier = Modifier.height(8.dp))
                         Button(
                             onClick = {
-//                                val response = signUpScope.launch {
-//                                    client.post("https://mock-banking-application.herokuapp.com/signup") {
-//                                        contentType(ContentType.Application.Json)
-//                                        setBody(SignUpDTO(username, password))
-//                                    }
-//                                }
 
                             },
                             modifier = Modifier.fillMaxWidth(),
